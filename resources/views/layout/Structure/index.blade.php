@@ -7,6 +7,8 @@
 </head>
 <body>
     @include('components.sidebar.index')
+    <div class="p-4 md:ml-64">
     @yield('content')
+    </div>
 </body>
 </html>

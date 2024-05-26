@@ -8,6 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/setting', [PageController::class, 'setting'])->name('pages.settingpage.index');
-Route::get('*', function () {
-    return view('pages.errorpage.index');
-});
+Route::get('/feature', [PageController::class, 'feature'])->name('pages.featurepage.index');
