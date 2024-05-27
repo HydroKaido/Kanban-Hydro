@@ -7,6 +7,10 @@ use App\Models\Board;
 
 class BoardController extends Controller
 {
+    public function board(){
+        $board = Board::all();
+        return view('pages.homepage.index', ['boards' => $board]);
+    }
     public function createboard(Request $request)
     {
         $data = $request->validate([

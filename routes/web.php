@@ -14,4 +14,5 @@ Route::get('/board', function () {
 Route::get('/setting', [PageController::class, 'setting'])->name('pages.settingpage.index');
 Route::get('/feature', [PageController::class, 'feature'])->name('pages.featurepage.index');
 Route::post('/board', [BoardController::class, 'createboard'])->name('board.store');
+Route::get('/', [BoardController::class, 'board'])->name('pages.homepage.index');
 
