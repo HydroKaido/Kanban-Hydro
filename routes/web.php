@@ -15,6 +15,6 @@ Route::get('/setting', [PageController::class, 'setting'])->name('pages.settingp
 Route::get('/feature', [PageController::class, 'feature'])->name('pages.featurepage.index');
 Route::post('/board', [BoardController::class, 'createboard'])->name('board.store');
 Route::get('/', [BoardController::class, 'board'])->name('pages.homepage.index');
-Route::put('/board/update/{board}', [BoardController::class, 'updateboard'])->name('board.update');
+Route::put('/board/update/{board:}', [BoardController::class, 'updateboard'])->name('board.update');
 
 

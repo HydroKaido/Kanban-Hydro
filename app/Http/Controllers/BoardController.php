@@ -34,9 +34,15 @@ class BoardController extends Controller
             'date' => 'required|string',
             'tag' => 'required|string',
             'task_person' => 'required|string',
-            ]);
-            $board->update($data);
-            return redirect()->route('pages.homepage.index');
+        ]);
+        $board->update($data);
+        return redirect()->route('pages.homepage.index');
+    }
+    
+
+    public function deleteboard(Board $board){
+        $board->delete();
+        return redirect()->route('pages.homepage.index');
     }
 }
 
