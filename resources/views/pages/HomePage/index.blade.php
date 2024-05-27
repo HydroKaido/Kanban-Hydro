@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  @include('components.modal.modalcreate.index')
+  @include('pages.createtask.index')
 
   <script>
     function toggleModal(modalID) {
