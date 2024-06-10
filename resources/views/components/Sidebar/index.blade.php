@@ -11,15 +11,15 @@
                 </div>
             </li>
             <li  class="flex mt-3 items-center text-gray-500 text-sm">
-                <x-monoicon-board class="w-4 h-4 me-2 "/>
+            @svg('monoicon-board')
                 <a href="{{'/'}}">Board</a>
             </li>
             <li  class="flex mt-3 items-center text-gray-500  text-sm">
-                <x-mdi-feature-search-outline class="w-4 h-4 me-2"/>
+            @svg('mdi-feature-search-outline')
                 <a href="{{'/feature'}}">Features</a>
             </li>
             <li  class="flex mt-3 items-center text-gray-500  text-sm">
-                <x-gmdi-settings class="w-4 h-4 me-2"/>
+            @svg('eva-settings-outline')
                 <a href="{{'/setting'}}">Settings</a>
             </li>
         </ul>

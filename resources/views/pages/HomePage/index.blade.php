@@ -5,7 +5,7 @@
     <div class="mx-10 mt-4">
       <div class="mb-5">
         <h2 class="mb-5 text-xl font-semibold">BOARD PAGE</h2>
-        <a href="javascript:void(0);" class="bg-blue-500 text-white p-2 rounded" onclick="toggleModal('modal')">Add Task</a>
+        <a>Add Task</a>
       </div>
       <div class="flex flex-wrap max-md:justify-center">
         <div class="bg-red-200 w-1/4 p-2 rounded shadow-lg">
