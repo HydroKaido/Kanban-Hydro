@@ -1,11 +1,13 @@
 @extends('layout.Structure.index')
 
 @section('content')
-  <div class="fixed w-screen">
+  <div class="ms-10">
     <div class="mx-10 mt-4">
       <div class="mb-5">
         <h2 class="mb-5 text-xl font-semibold">BOARD PAGE</h2>
-        <a>Add Task</a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Launch demo modal
+        </button>
       </div>
       <div class="flex flex-wrap max-md:justify-center">
         <div class="bg-red-200 w-1/4 p-2 rounded shadow-lg">
@@ -44,6 +46,5 @@
   </div>
 
   @include('pages.createtask.index')
-  @include('pages.edittask.index')
   
 @endsection
