@@ -1,7 +1,7 @@
 <style>
     .sidebar {
         height: 100vh;
-        width: 15rem;
+        width: 15.6rem;
         background-color: #403698;
         position: fixed;
         top: 0;
@@ -16,7 +16,7 @@
 
     @media only screen and (max-width: 992px) {
         .sidebar {
-            width: 20rem;
+            visibility: hidden;
         }
     }
 </style>
