@@ -32,9 +32,9 @@
         @foreach ($boards as $board)
         @if ($board->progress === "To-Do")
         <div class="bg-white w-full mb-4 p-2 rounded shadow">
-          <div class="d-flex justify-content-end mb-0">
-            <button class="btn"><i class="bi bi-pencil-square text-muted"></i></button>
-            <button type="button" class="btn delete-button" data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
+          <div class="d-flex justify-content-end mb-0" >
+            <button type="button" class="btn updateButton"  data-id="{{ $board->id}}", data-description="{{$board->description}}", data-title="{{$board->title}}", data-progres="{{$board->progress}}" data-date="{{$board->date}}" data-tag="{{$board->tag}}" data-task_person="{{$board->task_person}}"><i class="bi bi-pencil-square text-muted"></i></button>
+            <button type="button" class="btn deleteButton"  data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
           </div>
           <p class="fw-bold mb-1">{{ $board->title }}</p>
           <p class="">{{ $board->description }}</p>
@@ -54,8 +54,8 @@
         @if ($board->progress === "In Progress")
         <div class="bg-white w-full mb-4 p-2 rounded shadow">
           <div class="d-flex justify-content-end mb-0">
-            <button class="btn"><i class="bi bi-pencil-square text-muted"></i></button>
-            <button type="button" class="btn delete-button" data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
+          <button type="button" class="btn updateButton"  data-id="{{ $board->id}}", data-description="{{$board->description}}", data-title="{{$board->title}}", data-progres="{{$board->progress}}" data-date="{{$board->date}}" data-tag="{{$board->tag}}" data-task_person="{{$board->task_person}}"><i class="bi bi-pencil-square text-muted"></i></button>
+          <button type="button" class="btn deleteButton"  data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
           </div>
           <p class="text-gray-700">{{ $board->title }}</p>
         </div>
@@ -74,8 +74,8 @@
         @if ($board->progress === "In Review")
         <div class="bg-white w-full mb-4 p-2 rounded shadow">
           <div class="d-flex justify-content-end mb-0">
-            <button class="btn"><i class="bi bi-pencil-square text-muted"></i></button>
-            <button type="button" class="btn delete-button" data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
+          <button type="button" class="btn updateButton"  data-id="{{ $board->id}}", data-description="{{$board->description}}", data-title="{{$board->title}}", data-progres="{{$board->progress}}" data-date="{{$board->date}}" data-tag="{{$board->tag}}" data-task_person="{{$board->task_person}}"><i class="bi bi-pencil-square text-muted"></i></button>
+          <button type="button" class="btn deleteButton"  data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
           </div>
           <p class="text-gray-700">{{ $board->title }}</p>
         </div>
@@ -94,8 +94,8 @@
         @if ($board->progress === "Done")
         <div class="bg-white w-full mb-4 p-2 rounded shadow">
           <div class="d-flex justify-content-end mb-0">
-            <button class="btn"><i class="bi bi-pencil-square text-muted"></i></button>
-            <button type="button" class="btn delete-button" data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
+          <button type="button" class="btn updateButton"  data-id="{{ $board->id}}", data-description="{{$board->description}}", data-title="{{$board->title}}", data-progres="{{$board->progress}}" data-date="{{$board->date}}" data-tag="{{$board->tag}}" data-task_person="{{$board->task_person}}"><i class="bi bi-pencil-square text-muted"></i></button>
+          <button type="button" class="btn deleteButton"  data-id="{{ $board->id }}"><i class="bi bi-trash3-fill text-danger"></i></button>
           </div>
           <p class="text-gray-700">{{ $board->title }}</p>
         </div>
@@ -110,29 +110,8 @@
 @include('components.modal.createprogress.index')
 @include('components.modal.createreview.index')
 @include('components.modal.createdone.index')
-
-<!-- Delete  Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Delete Task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete this task?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <form id="deleteForm" method="POST" style="display: inline;">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+@include('components.modal.updatemodal.index')
+@include('components.modal.deletemodal.index')
 
 @endsection
 
@@ -141,12 +120,37 @@
   $(document).ready(function() {
     var deleteModal = $('#deleteModal');
     var deleteForm = $('#deleteForm');
-    $('.delete-button').on('click', function() {
+    var updateModal = $('#updateModal');
+    var updateForm = $('#updateForm');
+
+    $('.deleteButton').on('click', function() {
       var taskId = $(this).data('id');
       var action = '/boards/delete/' + taskId;
       deleteForm.attr('action', action);
       deleteModal.modal('show');
     });
+
+    $('.updateButton').on('click', function() {
+      var taskId = $(this).data('id');
+      var title = $(this).data('title');
+      var description = $(this).data('description');
+      var progress = $(this).data('progress');
+      var date = $(this).data('date');
+      var tag = $(this).data('tag');
+      var taskPerson = $(this).data('task-person');
+      $('#taskTitle').val(title);
+      $('#taskDescription').val(description);
+      $('#taskProgress').val(progress);
+      $('#taskDate').val(date);
+      $('#taskTag').val(tag);
+      $('#taskPerson').val(taskPerson);
+
+      var action = '/boards/update/' + taskId;
+      updateForm.attr('action', action);
+
+      updateModal.modal('show');
+
+      $()
+    });
   });
-  
 </script>

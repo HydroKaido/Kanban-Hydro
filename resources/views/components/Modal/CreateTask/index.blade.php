@@ -29,9 +29,6 @@
                         <label for="" class="fw-bold mb-1">Task Person</label>
                         <input type="text" name="task_person" placeholder="Task Person" class="form-control w-full">
                     </div>
-
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
