@@ -19,7 +19,7 @@
                     <input type="hidden" name="progress" value="To-Do" placeholder="Enter Description" class="form-control w-full">
                     <div class="mb-2">
                         <label for="" class="fw-bold mb-1">Task Date</label>
-                        <input type="date" name="date" placeholder="Date" class="form-control w-full">
+                        <input type="text" id="taskDate" name="date" placeholder="Date" class="form-control w-full">
                     </div>
                     <div class="mb-2">
                         <label for="" class="fw-bold mb-1">Task Tag</label>

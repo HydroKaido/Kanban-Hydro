@@ -17,5 +17,7 @@ Route::post('/board', [BoardController::class, 'createboard'])->name('board.stor
 Route::get('/', [BoardController::class, 'board'])->name('pages.homepage.index');
 Route::put('/boards/update/{board}', [BoardController::class, 'updateboard'])->name('board.update');
 Route::delete('/boards/delete/{board}', [BoardController::class, 'deleteboard'])->name('boards.delete');
-
+Route::fallback(function () {
+    return response()->view('pages.errorpage.index', [], 404);
+});
 

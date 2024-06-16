@@ -1,5 +1,5 @@
 @extends('layout.Structure.index')
 
-@section('content')
+@section('homeContent')
         <h2>Feature Page</h2>
 @endsection
