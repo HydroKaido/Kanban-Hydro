@@ -20,7 +20,6 @@
         }
     }
 </style>
-
 <div class="sidebar text-white p-3">
     <div class="d-flex align-items-center mb-3">
         <img src="https://dummyimage.com/300" alt="" class="rounded-circle me-3 image-sidebar">
@@ -30,6 +29,11 @@
         </div>
     </div>
     <ul class="nav flex-column">
+    <li class="nav-item mb-1">
+            <a href="{{'/dashboard'}}" class="nav-link text-white">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+        </li>
         <li class="nav-item mb-1">
             <a href="{{'/'}}" class="nav-link text-white">
                 <i class="bi bi-grid"></i> Board

@@ -13,4 +13,10 @@ class PageController extends Controller
     public function feature() {
         return view("pages.featurepage.index");
     }
+    public function dashboard() {
+        return view('pages.dashboardpage.index'); 
+    }
+    public function register() {
+        return view('pages.registerpage.index'); 
+    }
 }

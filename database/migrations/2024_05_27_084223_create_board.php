@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('date');
             $table->string('tag');
             $table->string('task_person');
+            $table->string('piece_id');
             $table->timestamps();
         });
     }
