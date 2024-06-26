@@ -12,7 +12,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3 bg-white px-3 py-2 border-bottom shadow-sm">
   <div class="d-flex align-items-center">
-    <a href="" class="rounded-circle text-black bg-secondary p-2 me-2"><i class="bi bi-arrow-left text-white"></i></a>
+    <a href="{{'/'}}" class="rounded-circle text-black bg-secondary p-2 me-2"><i class="bi bi-arrow-left text-white"></i></a>
     <div class="ms-3">
       <p class="fw-bold mb-0">Name of the Project</p>
       <span class="fs-6 fw-light">In progress</span>

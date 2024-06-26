@@ -17,6 +17,9 @@ class PageController extends Controller
         return view('pages.dashboardpage.index'); 
     }
     public function register() {
-        return view('pages.registerpage.index'); 
+        return view('auth.registerpage.index'); 
+    }
+    public function piece() {
+        return view('pages.pieceboardpage.index'); 
     }
 }

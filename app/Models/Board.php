@@ -16,5 +16,7 @@ class Board extends Model
         'date',
         'tag',
         'task_person',
+        'piece_id'
     ];
+    
 }

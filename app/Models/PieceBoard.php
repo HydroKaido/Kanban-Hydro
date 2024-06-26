@@ -9,11 +9,15 @@ class PieceBoard extends Model
 {
     use HasFactory;
 
-    protected $table = 'pieces';
+    protected $table = 'pieceboards';
     protected $fillable = [
-        'title',
-        'description',
-        'progress',
-        'user_id',
+        'piece_title',
+        'piece_description',
+        'piece_progress',
+        'user_id'
     ];
+
+    public function pieceMany(){
+        return $this->hasMany(Board::class);
+    }
 }
