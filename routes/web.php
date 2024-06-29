@@ -8,13 +8,12 @@ use App\Http\Controllers\PieceController;
 Route::get('/', [PieceController::class, 'piece'])->name('pages.pieceboardpage.index');
 Route::post('/piece', [PieceController::class, 'createpiece'])->name('create.piece');
 Route::get('/piece/{id}', [PieceController::class, 'showPiece'])->name('piece.data');
+Route::delete('/piece/delete/{id}', [PieceController::class, 'deletePiece'])->name('piece.delete');
 
 // New route for boards
-Route::get('/piece/{id}/boards', [BoardController::class, 'board'])->name('pages.homepage.index');
 Route::post('/pieces/{id}/board', [BoardController::class, 'createboard'])->name('board.store');
 Route::put('/boards/update/{board}', [BoardController::class, 'updateboard'])->name('board.update');
 Route::delete('/boards/delete/{board}', [BoardController::class, 'deleteboard'])->name('boards.delete');
-
 Route::get('/dashboard', [PageController::class, 'dashboard'])->name('pages.dashboardpage.index');
 Route::get('/register', [PageController::class, 'register'])->name('auth.registerpage.index');
 Route::get('/setting', [PageController::class, 'setting'])->name('pages.settingpage.index');

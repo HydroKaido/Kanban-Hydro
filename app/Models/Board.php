@@ -18,5 +18,4 @@ class Board extends Model
         'task_person',
         'piece_id'
     ];
-    
 }

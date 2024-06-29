@@ -28,6 +28,14 @@ class PieceController extends Controller
         ]);
 
         PieceBoard::create($data);
-        return redirect()->route('pages.pieceboardpage.index');
+        return redirect()->route('pages.pieceboardpage.index')->with('success', 'Piece is now Created');
+    }
+    public function deletePiece($id)
+    {
+        $pieceboard = PieceBoard::findOrFail($id);
+        $boards = Board::where('piece_id', $id);
+        $pieceboard->delete();
+        $boards->delete();
+        return redirect()->route('pages.pieceboardpage.index')->with('deleted', 'Piece deleted successfully');
     }
 }

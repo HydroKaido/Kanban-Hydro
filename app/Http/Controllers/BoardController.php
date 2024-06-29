@@ -7,10 +7,6 @@ use App\Models\Board;
 
 class BoardController extends Controller
 {
-    public function board($id){
-        $board = Board::all();
-        return view('pages.homepage.index',  ['id' => $id], ['boards' => $board]);
-    }
 
     public function createboard(Request $request, $id)
     {
@@ -24,7 +20,7 @@ class BoardController extends Controller
         ]);
         $data['piece_id'] = $id;
         Board::create($data);
-        return redirect()->route('pages.homepage.index',  ['id' => $id]);
+        return redirect()->route('piece.data',  ['id' => $id]);
     }
 
     public function updateboard(Request $request, $id){
@@ -38,7 +34,7 @@ class BoardController extends Controller
             'task_person' => 'required|string',
         ]);
         $board->update($data);
-        return redirect()->route('pages.homepage.index', ['id' => $board->piece_id]);
+        return redirect()->route('piece.data', ['id' => $board->piece_id]);
     }
     
     
@@ -46,7 +42,7 @@ class BoardController extends Controller
     public function deleteboard($id){
         $board = Board::findOrFail($id); 
         $board->delete();
-        return redirect()->route('pages.homepage.index', ['id' => $board->piece_id]);
+        return redirect()->route('piece.data', ['id' => $board->piece_id]);
     }
     
 }

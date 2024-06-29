@@ -16,8 +16,4 @@ class PieceBoard extends Model
         'piece_progress',
         'user_id'
     ];
-
-    public function pieceMany(){
-        return $this->hasMany(Board::class);
-    }
 }
