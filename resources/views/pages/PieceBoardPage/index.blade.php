@@ -3,18 +3,28 @@
 
 @include('components.Toast.index')
 <div>
-    <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Board</button>
+    <div class="d-flex justify-content-end me-3 my-3">
+        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Create Board</button>
     </div>
-
-    @foreach ($pieceboards as $pieceboard)
-    <div>
+    @if ($pieceboards->isEmpty())
+        <div>No Data</div>
+    @else
+        @foreach ($pieceboards as $pieceboard)
         <div>
-            <button type="button" class="btn btn-primary delete-btn" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
+            <a href="{{ route('piece.data', ['id' => $pieceboard->id]) }}" class="fw-bold mb-1 text-dark text-decoration-none">
+                <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between p-2">
+                    <p class="mx-2">{{$pieceboard->piece_title}}</p>
+                    <div>
+                        <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
+                        <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Update</button>
+                    </div>
+                </div>
+            </a>
         </div>
-        <a href="{{ route('piece.data', ['id' => $pieceboard->id]) }}" class="fw-bold mb-1">{{ $pieceboard->piece_title }}</a>
-    </div>
-    @endforeach
+        @endforeach
+    @endif
+    
+    
 
     <!-- Create Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,7 +79,9 @@
     $(document).ready(function() {
         var deleteModal = $('#exampledeDeleteModal');
         var deleteForm = $('#deleteForm');
-        $('.delete-btn').on('click', function() {
+        $('.delete-btn').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();    
             var Id = $(this).data('id');
             var action = '/piece/delete/' + Id;
             deleteForm.attr('action', action);
