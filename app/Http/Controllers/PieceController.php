@@ -16,7 +16,7 @@ class PieceController extends Controller
     public function showPiece($id)
     {
         $boards = Board::where('piece_id', $id)->get();
-        return view('pages.homepage.index', ['boards' => $boards, 'id' => $id]);
+        return view('pages.boardpage.index', ['boards' => $boards, 'id' => $id]);
     }
     public function createpiece(Request $request)
     {

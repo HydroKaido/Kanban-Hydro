@@ -2,6 +2,11 @@
 @section('homeContent')
 
 @include('components.Toast.index')
+
+<div class="bg-white p-4">
+    <div class="">Dashboard</div>
+</div>
+
 <div>
     <div class="d-flex justify-content-end me-3 my-3">
         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Create Board</button>
@@ -83,7 +88,7 @@
             e.preventDefault();
             e.stopPropagation();    
             var Id = $(this).data('id');
-            var action = '/piece/delete/' + Id;
+            var action = '/board/piece/delete/' + Id;
             deleteForm.attr('action', action);
         });
         $(".toast").toast('show');

@@ -2,7 +2,7 @@
     .sidebar {
         height: 100vh;
         width: 15.6rem;
-        background-color: #403698;
+        background-color: #242527;
         position: fixed;
         top: 0;
         left: 0;
@@ -35,7 +35,7 @@
             </a>
         </li>
         <li class="nav-item mb-1">
-            <a href="{{'/'}}" class="nav-link text-white">
+            <a href="{{'/board'}}" class="nav-link text-white">
                 <i class="bi bi-grid"></i> Board
             </a>
         </li>
