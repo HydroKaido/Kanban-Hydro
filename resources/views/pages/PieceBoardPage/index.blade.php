@@ -16,7 +16,7 @@
     @else
         @foreach ($pieceboards as $pieceboard)
         <div>
-            <a href="{{ route('piece.data', ['id' => $pieceboard->id]) }}" class="fw-bold mb-1 text-dark text-decoration-none">
+            <a href="{{ route('piece.data', $pieceboard->id) }}" class="fw-bold mb-1 text-dark text-decoration-none">
                 <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between p-2">
                     <p class="mx-2">{{$pieceboard->piece_title}}</p>
                     <div>
