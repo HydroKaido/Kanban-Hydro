@@ -15,17 +15,20 @@
         <div>No Data</div>
     @else
         @foreach ($pieceboards as $pieceboard)
-        <div>
-            <a href="{{ route('piece.data', $pieceboard->id) }}" class="fw-bold mb-1 text-dark text-decoration-none">
-                <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between p-2">
-                    <p class="mx-2">{{$pieceboard->piece_title}}</p>
-                    <div>
-                        <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
-                        <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Update</button>
+        @if ($pieceboard->user_id == Auth::user()->id)
+            <div>
+                <a href="{{ route('piece.data', $pieceboard->id) }}" class="fw-bold mb-1 text-dark text-decoration-none">
+                    <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between p-2">
+                        <p class="mx-2">{{$pieceboard->piece_title}}</p>
+                        <div>
+                            <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
+                            <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Update</button>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
+        @endif
+
         @endforeach
     @endif
     
@@ -45,7 +48,6 @@
                         <input type="text" name="piece_title" class="form-control" placeholder="Title">
                         <input type="text" name="piece_description" class="form-control" placeholder="Description">
                         <input type="text" name="piece_progress" class="form-control" placeholder="Progress">
-                        <input type="hidden" name="user_id" value="asdfasdf" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PieceBoard;
 use App\Models\Board;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class PieceController extends Controller
 {
@@ -20,16 +23,22 @@ class PieceController extends Controller
     }
     public function createpiece(Request $request)
     {
-        $data = $request->validate([
+        $id = Auth::user()->id;
+        $request->validate([
             'piece_title' => 'required|string',
             'piece_description' => 'required|string',
             'piece_progress' => 'required|string',
-            'user_id' => 'required|string'
         ]);
-
-        PieceBoard::create($data);
+        
+        PieceBoard::create([
+            'piece_title' => $request->piece_title,
+            'piece_description' => $request->piece_description,
+            'piece_progress' => $request->piece_progress,
+            'user_id' => $id
+        ]);
         return redirect()->route('pages.pieceboardpage.index')->with('success', 'Piece is now Created');
     }
+    
     public function deletePiece($id)
     {
         $pieceboard = PieceBoard::findOrFail($id);
