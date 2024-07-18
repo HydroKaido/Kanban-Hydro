@@ -71,7 +71,7 @@ This project is a Kanban board application designed to help manage tasks efficie
 
 8. **Access the application**
 
-    Open your browser and go to `http://127.0.0.1`.
+    Open your browser and go to `http://127.0.0.1:8000`.
 
 ## Usage
 
