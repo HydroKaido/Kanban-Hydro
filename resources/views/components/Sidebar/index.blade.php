@@ -13,7 +13,19 @@
         width: 80px;
     }
     
-
+    #container_img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    background: #333;
+    }
+    #name {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    line-height: 100px;
+    }
     @media only screen and (max-width: 992px) {
         .sidebar {
             visibility: hidden;
@@ -22,7 +34,13 @@
 </style>
 <div class="sidebar text-white p-3">
     <div class="d-flex align-items-center mb-3">
-        <img src="https://dummyimage.com/300" alt="" class="rounded-circle me-3 image-sidebar">
+        @if (Auth::user()->image)
+            <img src="https://dummyimage.com/300" alt="" class="rounded-circle me-3 image-sidebar">
+        @else
+        <div id="container_img">
+            <div id="name"></div>
+        </div>
+        @endif
         <div class="d-flex flex-column justify-content-center">
             <p class="mb-0">Doedsfad</p>
             <p class="mb-0 ">Admin</p>
@@ -51,3 +69,10 @@
         </li>
     </ul>
 </div>
+
+<script>
+    var firsname = "{{Auth::user()->firstname}}";
+    var lastname = "{{Auth::user()->lastname}}";
+    var initials = firsname.charAt(0).toUpperCase() + "" + lastname.charAt(0).toUpperCase()
+    document.getElementById("name").innerHTML = initials;
+</script>

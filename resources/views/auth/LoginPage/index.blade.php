@@ -15,7 +15,7 @@
 @section('content')
 
     <div class="container_center d-flex justify-content-center align-items-center">
-        <div class="form-container">
+        <div class="form-container"> 
             <form  action="{{route('login.post')}}"  method="POST" class="needs-validation" novalidate>
                 @csrf
                 @method('POST')

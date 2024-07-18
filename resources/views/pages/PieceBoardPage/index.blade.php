@@ -8,31 +8,35 @@
 </div>
 
 <div>
-    <div class="d-flex justify-content-end me-3 my-3">
+    <div class="d-flex justify-content-between me-3 my-3">
+        <div>
+            <button class="btn bg-white" id="asc">ASC</button>
+            <button class="btn bg-white" id="desc">DESC</button>
+        </div>
         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Create Board</button>
     </div>
     @if ($pieceboards->isEmpty())
         <div>No Data</div>
     @else
-        @foreach ($pieceboards as $pieceboard)
-        @if ($pieceboard->user_id == Auth::user()->id)
-            <div>
-                <a href="{{ route('piece.data', $pieceboard->id) }}" class="fw-bold mb-1 text-dark text-decoration-none">
-                    <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between p-2">
-                        <p class="mx-2">{{$pieceboard->piece_title}}</p>
-                        <div>
-                            <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
-                            <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Update</button>
-                        </div>
+        <div id="pieceboard-container">
+            @foreach ($pieceboards as $pieceboard)
+                @if ($pieceboard->user_id == Auth::user()->id)
+                    <div class="pieceboard-item" data-title="{{ $pieceboard->piece_title }}">
+                        <a href="{{ route('piece.data', $pieceboard->id) }}" class=" mb-1 text-dark text-decoration-none" id="pieceboard">
+                            <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between p-2">
+                                <h6 class="mx-2 fw-bold">{{$pieceboard->piece_title}}</h6>
+                                <div>
+                                    <span>{{ $pieceboard->created_at->format('Y-m-d') }}</span>
+                                    <button type="button" class="btn btn-danger delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
+                                    <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Update</button>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-        @endif
-
-        @endforeach
+                @endif
+            @endforeach
+        </div>
     @endif
-    
-    
 
     <!-- Create Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,12 +92,27 @@
         var deleteForm = $('#deleteForm');
         $('.delete-btn').on('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();    
+            e.stopPropagation();
             var Id = $(this).data('id');
             var action = '/board/piece/delete/' + Id;
             deleteForm.attr('action', action);
         });
         $(".toast").toast('show');
+
+        var asc = $('#asc');
+        var desc = $('#desc');
+
+        asc.on('click', function() {
+            sortPieceboards('asc');
+        });
+
+        desc.on('click', function() {
+            sortPieceboards('desc');
+        });
+
+        function sortPieceboards(order){
+            
+        }
     });
 </script>
 @endsection

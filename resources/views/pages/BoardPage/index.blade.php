@@ -19,9 +19,6 @@
       <span class="fs-6 fw-light">In progress</span>
     </div>
   </div>
-  <div>
-    <button class="bg-white p-2 border-dashed rounded">Add members</button>
-  </div>
 </div>
 <!-- Todo list -->
 <div class="fixed px-3 pt-2">
