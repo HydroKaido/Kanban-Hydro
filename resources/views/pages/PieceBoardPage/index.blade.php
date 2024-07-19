@@ -8,7 +8,7 @@
 </div>
 
 <div>
-    <div class="d-flex justify-content-between me-3 my-3">
+    <div class="d-flex justify-content-between mx-3 my-3">
         <div>
             <button class="btn bg-white" id="asc">ASC</button>
             <button class="btn bg-white" id="desc">DESC</button>
@@ -111,7 +111,22 @@
         });
 
         function sortPieceboards(order){
-            
+        var container = $('#pieceboard-container');
+        var items = $('.pieceboard-item');
+
+        items.sort(( a , b ) => {
+            var titleA = $(a).data('title');
+            var titleB = $(b).data('title');
+
+            if (order === 'asc') {
+                console.log('Asc data');
+                return titleA.localeCompare(titleB);
+            } else {
+                console.log('desc data');
+                return titleB.localeCompare(titleA);
+            }
+        });
+        items.detach().appendTo(container);
         }
     });
 </script>
