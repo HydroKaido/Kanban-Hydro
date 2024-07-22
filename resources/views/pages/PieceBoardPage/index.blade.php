@@ -3,10 +3,7 @@
 
 @include('components.Toast.index')
 
-
-<div class="bg-white p-4">
-    <div class="">Dashboard</div>
-</div>
+@include('components.Header.index')
 
 <div>
     <div class="d-flex justify-content-between mx-3 my-3">

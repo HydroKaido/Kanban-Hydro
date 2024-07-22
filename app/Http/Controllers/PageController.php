@@ -10,14 +10,14 @@ class PageController extends Controller
         return view("pages.homepage.index");
     }
     public function setting() {
-        return view("pages.settingpage.index");
+        return view("pages.settingpage.index", ['activePage' => 'setting']);
     }
     
     public function feature() {
-        return view("pages.featurepage.index");
+        return view("pages.featurepage.index", ['activePage' => 'feature']);
     }
     public function dashboard() {
-        return view('pages.dashboardpage.index'); 
+        return view('pages.dashboardpage.index', ['activePage' => 'dashboard']); 
     }
     public function register() {
         return view('auth.registerpage.index'); 
@@ -26,6 +26,6 @@ class PageController extends Controller
         return view('auth.loginpage.index'); 
     }
     public function piece() {
-        return view('pages.pieceboardpage.index'); 
+        return view('pages.pieceboardpage.index', ['activePage' => 'piece']); 
     }
 }

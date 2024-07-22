@@ -13,14 +13,14 @@ class PieceController extends Controller
 {
     public function piece(){
         $pieceboard = PieceBoard::all();
-        return view('pages.pieceboardpage.index', ['pieceboards' => $pieceboard]);
+        return view('pages.pieceboardpage.index', ['pieceboards' => $pieceboard],  ['activePage' => 'board']);
     }
 
     public function showPiece($id)
     {
         $boards = Board::where('piece_id', $id)->get();
         $pieceboard = PieceBoard::where('id', $id)->get();
-        return view('pages.boardpage.index', ['boards' => $boards, 'id' => $id, 'pieceboards' => $pieceboard]);
+        return view('pages.boardpage.index', ['boards' => $boards, 'id' => $id, 'pieceboards' => $pieceboard],  ['activePage' => 'board']);
     }
     public function createpiece(Request $request)
     {

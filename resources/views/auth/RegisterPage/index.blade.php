@@ -14,27 +14,10 @@
 </style>
 @section('content')
     <div class="container_center d-flex justify-content-center align-items-center">
-        <div class="form-container">
+        <div class="form-container border">
             <form  action="{{route('register.create')}}"  method="POST" class="needs-validation" novalidate>
                 @csrf
                 @method('POST')
-                <div class="mb-3">
-                    <label for="firstname"  class="form-label fw-bold">First Name</label>
-                    <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter Firstname" required>
-                    <div class="valid-feedback">
-                    Looks good!
-                    </div>
-                    @if ($errors->has('firstname'))
-                        <div class="text-danger">{{ $errors->first('firstname') }}</div>
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label for="lastname"  class="form-label fw-bold">Last Name</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Enter Lastname" required>
-                    @if ($errors->has('lastname'))
-                        <div class="text-danger">{{ $errors->first('lastname') }}</div>
-                    @endif
-                </div>
                 <div class="mb-3">
                     <label for="username"  class="form-label fw-bold">Username</label>
                     <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" required>
@@ -60,9 +43,14 @@
                     <label for="password_confirmation" class="form-label fw-bold">Confirm Password</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Register</button>
+                <button type="submit" class="btn btn-primary w-100 shadow-sm">Register</button>
+                <label for="" class="text-center d-block my-2">or</label>
+                <div class="d-flex justify-content-center ">
+                    <a href="{{route('login.auth')}}" class="text-decoration-none text-black border shadow-sm w-100 text-center">
+                        <img src="{{asset('assets/icons/google.svg')}}" alt=""> Sign in with Google
+                    </a>
+                </div>
 
-                <a href="{{route('login.auth')}}">Sign Up with Google</a>
             </form>
         </div>
     </div>

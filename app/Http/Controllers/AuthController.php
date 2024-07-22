@@ -14,8 +14,6 @@ class AuthController extends Controller
     public function registerAuth(User $user, Request $request)
     {
         $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|confirmed|min:8',
@@ -23,8 +21,6 @@ class AuthController extends Controller
         ]);
 
         $user::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
             'username' => $request->username,
             'email' => $request->email,
             'image' => $request->image,
@@ -65,8 +61,6 @@ class AuthController extends Controller
                 return redirect()->intended('dashboard');
             } else {
                 $newUser = User::create([
-                    'firstname' => $user->user['given_name'],
-                    'lastname' => $user->user['family_name'],
                     'username' => $user->user['name'],
                     'image' => $user->user['picture'],
                     'email' => $user->email,
