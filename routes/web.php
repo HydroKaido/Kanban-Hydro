@@ -28,6 +28,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'registerAuth'])->name('register.create');
     Route::get('/login', [PageController::class, 'login'])->name('auth.loginpage.index');
     Route::post('/login', [AuthController::class, 'loginAuth'])->name('login.post');
+    Route::get('/register/google', [AuthController::class, 'loginAuthGoogle'])->name('login.auth');
+    Route::get('/register/google/callback', [AuthController::class, 'loginAuthCallback'])->name('login.callback');
 });
 
 Route::fallback(function () {

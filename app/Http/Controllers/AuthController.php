@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use Exception;
 
 class AuthController extends Controller
 {
-    public function registerAuth(User $user, Request $request){
+    public function registerAuth(User $user, Request $request)
+    {
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -18,7 +21,7 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed|min:8',
             'image' => 'string|max:255|nullable'
         ]);
-    
+
         $user::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -27,7 +30,7 @@ class AuthController extends Controller
             'image' => $request->image,
             'password' => Hash::make($request->password),
         ]);
-    
+
         return redirect()->route('auth.loginpage.index');
     }
     public function loginAuth(Request $request)
@@ -42,7 +45,44 @@ class AuthController extends Controller
         return back()->with('error', 'Email or Password might be incorrect');
     }
 
-    public function logoutAuth(){
+    public function loginAuthGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function loginAuthCallback()
+    {
+        try {
+
+            $user = Socialite::driver('google')->user();
+            /* dd($user); */
+            $finduser = User::where('google_id', $user->id)->first();
+
+            if ($finduser) {
+
+                Auth::login($finduser);
+
+                return redirect()->intended('dashboard');
+            } else {
+                $newUser = User::create([
+                    'firstname' => $user->user['given_name'],
+                    'lastname' => $user->user['family_name'],
+                    'username' => $user->user['name'],
+                    'image' => $user->user['picture'],
+                    'email' => $user->email,
+                    'google_id' => $user->id,
+                    'password' => encrypt(env('DEFAULT_USER_PASSWORD'))
+                ]);
+                Auth::login($newUser);
+                return redirect()->route('pages.dashboardpage.index'); 
+            }
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+    public function logoutAuth()
+    {
         Auth::logout();
         return redirect()->route('auth.loginpage.index')->with('logout', 'Your successfully Logout');
     }

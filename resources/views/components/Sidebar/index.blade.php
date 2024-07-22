@@ -35,7 +35,7 @@
 <div class="sidebar text-white p-3">
     <div class="d-flex align-items-center mb-3">
         @if (Auth::user()->image)
-            <img src="https://dummyimage.com/300" alt="" class="rounded-circle me-3 image-sidebar">
+            <img src="{{Auth::user()->image}}" alt="" class="rounded-circle me-3 image-sidebar">
         @else
         <div id="container_img">
             <div id="name"></div>

@@ -61,6 +61,8 @@
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Register</button>
+
+                <a href="{{route('login.auth')}}">Sign Up with Google</a>
             </form>
         </div>
     </div>
