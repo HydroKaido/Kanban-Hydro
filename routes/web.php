@@ -6,6 +6,7 @@ use App\Http\Controllers\PieceController;
 use App\Http\Controllers\AuthController;
 
 // Existing routes
+Route::get('/', [PageController::class, 'homepage'])->name('pages.pieceboardpage.index');
 Route::get('/board', [PieceController::class, 'piece'])->name('pages.pieceboardpage.index');
 Route::post('/board/piece', [PieceController::class, 'createpiece'])->name('create.piece');
 Route::get('/board/piece/{id}', [PieceController::class, 'showPiece'])->name('piece.data');

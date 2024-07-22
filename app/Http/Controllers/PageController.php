@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
-{
+{   
+    public function homepage() {
+        return view("pages.homepage.index");
+    }
     public function setting() {
         return view("pages.settingpage.index");
     }

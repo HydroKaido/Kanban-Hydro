@@ -15,8 +15,11 @@
   <div class="d-flex align-items-center">
     <a href="{{'/board'}}" class="rounded-circle text-black bg-secondary p-2 me-2"><i class="bi bi-arrow-left text-white"></i></a>
     <div class="ms-3">
-      <p class="fw-bold mb-0">Name of the Project</p>
-      <span class="fs-6 fw-light">In progress</span>
+    @foreach ($pieceboards as $pieceboard)
+        <p class="fw-bold mb-0">{{ucfirst($pieceboard->piece_title)}}</p>
+        <span class="fs-6 fw-light">{{$pieceboard->piece_progress}}</span>
+      @endforeach
+      
     </div>
   </div>
 </div>

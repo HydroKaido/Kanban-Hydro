@@ -3,6 +3,7 @@
 
 @include('components.Toast.index')
 
+
 <div class="bg-white p-4">
     <div class="">Dashboard</div>
 </div>
@@ -23,12 +24,20 @@
                 @if ($pieceboard->user_id == Auth::user()->id)
                     <div class="pieceboard-item" data-title="{{ $pieceboard->piece_title }}">
                         <a href="{{ route('piece.data', $pieceboard->id) }}" class=" mb-1 text-dark text-decoration-none" id="pieceboard">
-                            <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between p-2">
-                                <h6 class="mx-2 fw-bold">{{$pieceboard->piece_title}}</h6>
+                            <div class="bg-white mx-3 rounded border mt-2 d-flex justify-content-between align-items-center p-2">
+                                <div class="mx-2">
+                                    <h6 class="fw-bold">{{ucfirst($pieceboard->piece_title,)}}</h6>
+                                    @if ($pieceboard->piece_progress === "Done")
+                                        <span class="badge bg-success">{{$pieceboard->piece_progress}}</span>
+                                    @elseif ($pieceboard->piece_progress === "In-progress")
+                                        <span class="badge bg-warning">{{$pieceboard->piece_progress}}</span>
+                                    @endif
+                                    
+                                </div>
                                 <div>
-                                    <span>{{ $pieceboard->created_at->format('Y-m-d') }}</span>
-                                    <button type="button" class="btn btn-danger delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
-                                    <button type="button" class="btn btn-primary delete-btn mx-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Update</button>
+                                    <span style="font-size: 13px;" class="me-2">{{ $pieceboard->created_at->format('Y-m-d') }}</span>
+                                    <button type="button" class="btn btn-danger delete-btn me-2" data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Delete</button>
+                                    <button type="button" class="btn btn-primary delete-btn " data-bs-toggle="modal" data-bs-target="#exampledeDeleteModal" data-id="{{ $pieceboard->id }}">Update</button>
                                 </div>
                             </div>
                         </a>
