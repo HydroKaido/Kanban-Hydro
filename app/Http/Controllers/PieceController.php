@@ -7,19 +7,20 @@ use App\Models\PieceBoard;
 use App\Models\Board;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 
 class PieceController extends Controller
 {
     public function piece(){
-        $pieceboard = PieceBoard::all();
-        return view('pages.pieceboardpage.index', ['pieceboards' => $pieceboard],  ['activePage' => 'board']);
+        $pieceboards = PieceBoard::where('user_id', Auth::user()->id)->paginate(8);
+        return view('pages.pieceboardpage.index', ['pieceboards' => $pieceboards],  ['activePage' => 'board']);
     }
 
     public function showPiece($id)
     {
-        $boards = Board::where('piece_id', $id)->get();
-        $pieceboard = PieceBoard::where('id', $id)->get();
+        $boards = Board::where('piece_id', $id);
+        $pieceboard = PieceBoard::where('id', $id);
         return view('pages.boardpage.index', ['boards' => $boards, 'id' => $id, 'pieceboards' => $pieceboard],  ['activePage' => 'board']);
     }
     public function createpiece(Request $request)

@@ -31,11 +31,9 @@ class AuthController extends Controller
     }
     public function loginAuth(Request $request)
     {
-        $credetials = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        if (Auth::attempt($credetials)) {
+        $credetials = ['email' => $request->email,'password' => $request->password,];
+        $remember = $request->remember;
+        if (Auth::attempt($credetials, $remember)) {
             return redirect()->route('pages.dashboardpage.index')->with('success', 'Login berhasil');
         }
         return back()->with('error', 'Email or Password might be incorrect');

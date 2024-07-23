@@ -14,7 +14,7 @@
         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Create Board</button>
     </div>
     @if ($pieceboards->isEmpty())
-        <div>No Data</div>
+        <div class="text-center">No Data</div>
     @else
         <div id="pieceboard-container">
             @foreach ($pieceboards as $pieceboard)
@@ -41,7 +41,11 @@
                     </div>
                 @endif
             @endforeach
+            
         </div>
+        <div class="m-3">
+                {{$pieceboards->links()}}
+            </div>
     @endif
 
     <!-- Create Modal -->

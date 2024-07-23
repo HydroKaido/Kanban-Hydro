@@ -50,7 +50,13 @@
                         <div class="text-danger">{{ $errors->first('password') }}</div>
                     @endif
                 </div>
-                <a href="{{route('password.request')}}" class="text-center d-block my-3 text-decoration-none">Forgot Password?</a>
+                <div class="d-flex justify-content-between align-items-center my-3">
+                    <div class=" form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberCheck">
+                        <label class="form-check-label" for="rememberCheck">Remember Me</label>
+                    </div>
+                    <a href="{{route('password.request')}}" class="text-decoration-none">Forgot Password?</a>
+                </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
                 
                 <label for="" class="lineText">Or</label>
